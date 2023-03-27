@@ -15,6 +15,11 @@ interface HomeProps {
     onUpdateTag: (id: string, label: string) => void
 }
 
+export interface tagSelect {
+    label: string;
+    value: string;
+}
+
 export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: HomeProps) => {
     const [inputValue, setInputvalue] = useState("");
     const [selectedTags, setSelectedSTags] = useState<Tag[]>([]);
@@ -44,7 +49,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                         <Modal.Portal>
                             <Modal.Overlay className="w-screen h-screen bg-black/70 fixed inset-0" />
                             <Modal.Content
-                                className="absolute p-10 w-1/2 h-max bg-white -translate-y-1/2 -translate-x-1/2 top-[55%] xl:top-[75%] left-1/2 data-[state=open]:animate-down data-[state=closed]:animate-up data-[state=closed]:pointer-events-none xl:max-w-lg rounded-xl"
+                                className="fixed p-10 w-1/2 h-max bg-white -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 data-[state=open]:animate-down data-[state=closed]:animate-up data-[state=closed]:pointer-events-none rounded-xl"
                             >
                                 <Modal.Title className="text-2xl m-0 font-semibold">
                                     Editar tags
@@ -81,7 +86,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     options={avaliableTags.map(tag => {
                         return { label: tag.label, value: tag.id };
                     })}
-                    onChange={tags => {
+                    onChange={(tags) => {
                         setSelectedSTags(tags.map(tag => ({ label: tag!.label, id: tag!.value })));
                     }}
                     isMulti

@@ -29,13 +29,13 @@ export const ShowNote = ({ onDeleteNote }: showNoteProps) => {
                 </div>
                 <div className="flex gap-4 self-end">
                     <Link to={"/"} className="p-3 text-center border-2 rounded-md" title="Voltar">
-                        <FaArrowLeft className="fill-slate-500 text-2xl" />
+                        <FaArrowLeft color="gray" size={"1.5em"}/>
                     </Link>
                     <Link to={`/${Note.id}/edit`} className="p-3 text-center border-2 rounded-md" title="Editar">
-                        <FaPencilAlt className="fill-blue-500 text-2xl" />
+                        <FaPencilAlt color="blue" size={"1.5em"} />
                     </Link>
                     <span onClick={handleDelete} className="p-3 text-center border-2 rounded-md cursor-pointer" title="Deletar">
-                        <FaTrash className="fill-red-500 text-2xl" />
+                        <FaTrash color="red" size={"1.5em"} />
                     </span>
                 </div>
             </div>

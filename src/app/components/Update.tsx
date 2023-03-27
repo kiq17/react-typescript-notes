@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { NoteData } from "../App";
 import { useNote } from "./NoteList";
+import { tagSelect } from "./Home";
 
 export interface Tag {
     id: string;
@@ -41,7 +42,7 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
                     value={note}
                 />
                 < CreatableReactSelect className="w-80 h-13"
-                    onCreateOption={label => {
+                    onCreateOption={(label: string) => {
                         const newTag = { id: crypto.randomUUID(), label };
                         onAddTag(newTag);
                         setSelectedSTags(prev => [...prev, newTag]);
@@ -53,7 +54,7 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
                     value={selectedTags.map(tag => {
                         return { label: tag.label, value: tag.id };
                     })}
-                    onChange={tags => {
+                    onChange={(tags) => {
                         setSelectedSTags(tags.map(tag => {
                             return { label: tag.label, id: tag.value };
                         }));

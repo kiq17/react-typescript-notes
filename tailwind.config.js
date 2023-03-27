@@ -34,7 +34,7 @@ module.exports = {
                 slideIn: "slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)",
                 swipeOut: "swipeOut 100ms ease-out",
                 down: "down 300ms ease-in-out",
-                up: "up 300ms ease-in",
+                up: "up 300ms ease-in-out",
             },
         },
     },
