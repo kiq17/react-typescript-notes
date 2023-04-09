@@ -78,6 +78,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     label="Digite uma palavra"
                     value={inputValue}
                     handleOnChange={value => setInputvalue(value)}
+                    explanation={false}
                 />
                 <ReactSelect className="w-80 h-13"
                     value={selectedTags.map(tag => {

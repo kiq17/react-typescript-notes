@@ -40,6 +40,9 @@ export const Form = ({ onCreateNote, onAddTag, avaliableTags }: FormProps) => {
                     label="Insira seu note"
                     handleOnChange={value => setNote(value)}
                     value={note}
+                    explanation={true}
+                    titleExplanation="Criação Note"
+                    textExplanation="Para criar uma note o nome dever ter tamanho máximo de 100 carecteres. Certifique-se do que foi escrito antes de salvar."
                 />
                 <CreatableReactSelect className="w-80 h-13"
                     onCreateOption={(label: string) => {

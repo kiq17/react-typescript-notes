@@ -12,6 +12,10 @@ module.exports = {
                     from: { opacity: 1 },
                     to: { opacity: 0 },
                 },
+                show: {
+                    from: { opacity: 0 },
+                    to: { opacity: 1 },
+                },
                 slideIn: {
                     from: { transform: "translateX(calc(100% + 10px))" },
                     to: { transform: "translateX(0))" },
@@ -30,7 +34,8 @@ module.exports = {
                 }
             },
             animation: {
-                hide: "hide 100ms ease-in",
+                hide: "hide 300ms ease-in-out",
+                show: "show 300ms ease-in-out",
                 slideIn: "slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)",
                 swipeOut: "swipeOut 100ms ease-out",
                 down: "down 300ms ease-in-out",
