@@ -27,7 +27,7 @@ export const Input = ({ label, handleOnChange, value, errorText, className, expl
             </label>
             {explanation && <PopOver.Root>
                 <PopOver.Trigger asChild>
-                    <i className="fa-solid fa-circle-exclamation absolute top-1 right-2 cursor-pointer text-zinc-400" id="icon"></i>
+                    <i className="fa-solid fa-circle-exclamation absolute top-2 right-2 cursor-pointer text-zinc-400" id="icon"></i>
                 </PopOver.Trigger>
                 <PopOver.Portal>
                     <PopOver.Content className="w-56 h-max bg-zinc-700 rounded-md p-3 z-[1000] data-[state='closed']:animate-hide data-[state='open']:animate-show">

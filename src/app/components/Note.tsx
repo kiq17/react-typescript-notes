@@ -1,7 +1,9 @@
 import { useNote } from "./NoteList";
 import { FaTrash, FaPencilAlt, FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { marked } from "marked";
+import DOMPurify from 'dompurify';
+import { useEffect, useRef } from "react";
 
 interface showNoteProps {
     onDeleteNote: (id: string) => void;
@@ -10,6 +12,13 @@ interface showNoteProps {
 export const ShowNote = ({ onDeleteNote }: showNoteProps) => {
     const Note = useNote();
     const navigate = useNavigate();
+    const loadMarkdown = useRef<HTMLDivElement>(null);
+
+    useEffect(()=>{
+        if(loadMarkdown){
+            loadMarkdown.current!.innerHTML= DOMPurify.sanitize(marked.parse(Note.markdown))
+        }
+    }, [loadMarkdown])
 
     document.title = `Artigos | ${Note.note[0].toUpperCase() + Note.note.slice(1)}`;
 
@@ -29,7 +38,7 @@ export const ShowNote = ({ onDeleteNote }: showNoteProps) => {
                 </div>
                 <div className="flex gap-4 self-end">
                     <Link to={"/"} className="p-3 text-center border-2 rounded-md" title="Voltar">
-                        <FaArrowLeft color="gray" size={"1.5em"}/>
+                        <FaArrowLeft color="gray" size={"1.5em"} />
                     </Link>
                     <Link to={`/${Note.id}/edit`} className="p-3 text-center border-2 rounded-md" title="Editar">
                         <FaPencilAlt color="blue" size={"1.5em"} />
@@ -39,7 +48,9 @@ export const ShowNote = ({ onDeleteNote }: showNoteProps) => {
                     </span>
                 </div>
             </div>
-            <ReactMarkdown className="first-letter:uppercase">{Note.markdown}</ReactMarkdown>
+            <div className="markdown-box first-letter:uppercase" ref={loadMarkdown}>
+
+            </div>
         </>
     );
 };

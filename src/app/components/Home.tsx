@@ -93,7 +93,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     isMulti
                 />
             </form>
-            <div className="cards mt-10 flex gap-10 flex-wrap">
+            <div className="cards grid lg:grid-cols-3 py-6 gap-10 md:grid-cols-2 sm:grid-cols-1 sm:items-center">
                 {filteredSearch.map(item => {
                     return (
                         <Card

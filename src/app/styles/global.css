@@ -6,5 +6,22 @@
 .input-box:has(input[type="text"]:focus){
     --tw-border-opacity: 1;
     border-color: rgb(96 165 250 / var(--tw-border-opacity));
-    
+}
+
+.markdown-box a{
+    text-decoration: underline;
+}
+
+.markdown-box li{
+    list-style: inside;
+}
+
+.markdown-box h2{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.markdown-box h1{
+    font-size: 35px;
+    font-weight: bold;
 }
