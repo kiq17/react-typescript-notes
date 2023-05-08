@@ -24,8 +24,3 @@ export const Edit = ({ allTags, onUpdateTag, onDeleteTag }: EditProps) => {
         </form>
     );
 };
-
-/* explicação markdown [Seu link](http://seusite.com/)
-**Sua palvara** (Negrito)
-*Sua palvara* (Itálico)
-- Lista (Aparecer com um marker ao lado do item) */

@@ -37,7 +37,7 @@ export const Input = ({ label, handleOnChange, value, errorText, className, expl
                     </PopOver.Content>
                 </PopOver.Portal>
             </PopOver.Root>}
-            {errorText && <p className="absolute -bottom-6 left-2 text-rose-500 text-sm">{errorText}</p>}
+            {errorText && <p className="absolute -bottom-6 left-0 text-rose-500 text-sm">{errorText}</p>}
         </div>
     );
 };

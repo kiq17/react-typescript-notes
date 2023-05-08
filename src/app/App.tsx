@@ -8,6 +8,7 @@ import { NoteList } from "./components/NoteList";
 import { ShowNote } from "./components/Note";
 import { Update } from "./components/Update";
 
+
 export interface Note extends NoteData {
     id: string;
 }
