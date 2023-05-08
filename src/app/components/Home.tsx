@@ -73,7 +73,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     </Modal.Root>
                 </nav>
             </header>
-            <form className="flex items-center justify-between">
+            <form className="flex items-center justify-between flex-wrap gap-5">
                 <Input
                     label="Digite uma palavra"
                     value={inputValue}

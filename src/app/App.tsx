@@ -65,6 +65,16 @@ function App() {
     };
 
     const onDeleteNote = (id: string) => {
+        const findNote = notes.find(note => note.id === id)
+
+        setTags(prev => {
+            return prev.filter((note, i) => {
+                let id = findNote?.tagsIds[i]
+
+                return note.id !== id
+            });
+        })
+
         setNotes(prev => {
             return prev.filter(note => note.id !== id);
         });
@@ -74,17 +84,17 @@ function App() {
         setTags(prev => {
             return prev.map(tag => {
                 if (tag.id === id) {
-                    return {...tag, label};
-                } else{
+                    return { ...tag, label };
+                } else {
                     return tag;
                 }
             });
         });
     };
 
-    const removeTag = (id: string) =>{
-        setTags(prev=>{
-            return prev.filter(tag=> tag.id !== id);
+    const removeTag = (id: string) => {
+        setTags(prev => {
+            return prev.filter(tag => tag.id !== id);
         });
     };
 

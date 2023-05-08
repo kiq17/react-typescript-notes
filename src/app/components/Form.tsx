@@ -74,7 +74,7 @@ export const Form = ({ onCreateNote, onAddTag, avaliableTags }: FormProps) => {
                 <p className="text-sm text-zinc-400">Clique em <i className="fa-solid fa-circle-exclamation text-zinc-400" id="icon"></i> para receber explicações.</p>
             </div>
             <form onSubmit={handleSubmit} className="flex relative mt-5 items-center gap-3 flex-wrap">
-                <fieldset className="flex justify-between items-center mb-5 w-full">
+                <fieldset className="flex justify-between flex-wrap gap-5 items-center mb-5 w-full">
                     <Input
                         label="Insira seu note"
                         handleOnChange={value => setNote(value)}
@@ -115,7 +115,7 @@ export const Form = ({ onCreateNote, onAddTag, avaliableTags }: FormProps) => {
 
                 <PopOver.Root>
                     <PopOver.Trigger asChild>
-                        <i className="fa-solid fa-circle-exclamation absolute top-24 right-3 cursor-pointer text-zinc-400" id="icon"></i>
+                        <i className="fa-solid fa-circle-exclamation absolute top-40 lg:top-24 md:top-24 right-3 cursor-pointer text-zinc-400" id="icon"></i>
                     </PopOver.Trigger>
                     <PopOver.Portal>
                         <PopOver.Content className="w-56 h-max bg-zinc-700 rounded-md p-3 z-[1000] data-[state='closed']:animate-hide data-[state='open']:animate-show">

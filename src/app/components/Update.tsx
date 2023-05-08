@@ -69,7 +69,7 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
                 <p className="text-sm text-zinc-400">Clique em <i className="fa-solid fa-circle-exclamation text-zinc-400" id="icon"></i> para receber explicações.</p>
             </div>
             <form onSubmit={handleSubmit} className="flex relative mt-5 items-center gap-3 flex-wrap">
-                <fieldset className="flex justify-between items-center mb-5 w-full">
+                <fieldset className="flex justify-between flex-wrap gap-5 items-center mb-5 w-full">
                     <Input
                         label="Insira seu note"
                         handleOnChange={value => setNote(value)}
