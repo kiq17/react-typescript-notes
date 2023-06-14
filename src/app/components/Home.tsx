@@ -7,6 +7,7 @@ import { Tag } from "./Form";
 import { Note } from "../App";
 import * as Modal from "@radix-ui/react-dialog";
 import { Edit } from "./Edit";
+import { Select } from "../../shared/components/Select";
 
 interface HomeProps {
     avaliableTags: Tag[]
@@ -80,7 +81,7 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     handleOnChange={value => setInputvalue(value)}
                     explanation={false}
                 />
-                <ReactSelect className="w-80 h-13"
+                {/* <ReactSelect className="w-80 h-13"
                     value={selectedTags.map(tag => {
                         return { label: tag.label, value: tag.id };
                     })}
@@ -91,6 +92,18 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                         setSelectedSTags(tags.map(tag => ({ label: tag!.label, id: tag!.value })));
                     }}
                     isMulti
+                /> */}
+                <Select
+                    multiple
+                    value={selectedTags.map(tag => {
+                        return { label: tag.label, value: tag.id };
+                    })}
+                    options={avaliableTags.map(tag => {
+                        return { label: tag.label, value: tag.id };
+                    })}
+                    onChange={(tags) => {
+                        setSelectedSTags(tags.map(tag => ({ label: tag!.label, id: tag!.value })));
+                    }}
                 />
             </form>
             <div className="cards grid lg:grid-cols-3 py-6 gap-10 md:grid-cols-2 sm:grid-cols-1 sm:items-center">
