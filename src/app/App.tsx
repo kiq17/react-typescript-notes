@@ -65,19 +65,9 @@ function App() {
     };
 
     const onDeleteNote = (id: string) => {
-        const findNote = notes.find(note => note.id === id)
-
-        setTags(prev => {
-            return prev.filter((note, i) => {
-                let id = findNote?.tagsIds[i]
-
-                return note.id !== id
+            setNotes(prev => {
+                return prev.filter(note => note.id !== id);
             });
-        })
-
-        setNotes(prev => {
-            return prev.filter(note => note.id !== id);
-        });
     };
 
     const updateTag = (id: string, label: string) => {
