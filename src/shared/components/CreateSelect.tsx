@@ -31,7 +31,7 @@ export const CreateSelect = ({ multiple, value, options, onChange, onCreateOptio
 
     const filteredOptions = useMemo(() => {
         return options.filter(item => {
-            return item.label.toLowerCase().includes(inputValue) || item.label.toUpperCase().includes(inputValue)
+            return item.label.toLowerCase().includes(inputValue.toLowerCase())
         })
     }, [inputValue])
 
@@ -43,7 +43,7 @@ export const CreateSelect = ({ multiple, value, options, onChange, onCreateOptio
     }
 
     const selected = (option: selectOption, index?: number) => {
-        console.log("a")
+        console.log(value)
         if (index !== undefined) {
             if (highLights.includes(index)) {
                 setHighLights(prev => prev.filter(i => i != index))
@@ -52,7 +52,6 @@ export const CreateSelect = ({ multiple, value, options, onChange, onCreateOptio
             }
         }
         if (multiple) {
-            console.log(value.includes(option))
             if (value.includes(option)) {
                 let indexFinded = options.findIndex(val => val == option)
                 onChange(value.filter(o => o !== option))

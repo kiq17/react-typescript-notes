@@ -30,7 +30,7 @@ export const Select = ({ multiple, value, options, onChange }: selcetProps) => {
 
     const filteredOptions = useMemo(() => {
         return options.filter(item => {
-            return item.label.toLowerCase().includes(inputValue) || item.label.toUpperCase().includes(inputValue)
+            return item.label.toLowerCase().includes(inputValue.toLowerCase())
         })
     }, [inputValue])
 
@@ -127,7 +127,7 @@ export const Select = ({ multiple, value, options, onChange }: selcetProps) => {
                         )
                     }
                     )) :
-                    (<p className="p-2">{options.length > 0 ? {inputValue} + "não encontrado." : "Nenhuma tag foi adicionada."}</p>)
+                    (<p className="p-2">{options.length > 0 ? inputValue + "não encontrado." : "Nenhuma tag foi adicionada."}</p>)
                 }
             </ul>
         </div >

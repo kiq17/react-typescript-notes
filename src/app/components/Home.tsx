@@ -1,13 +1,12 @@
+import * as Modal from "@radix-ui/react-dialog";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "../../shared/components/Input";
-import ReactSelect from "react-select";
-import { Card } from "./Card";
-import { Tag } from "./Form";
-import { Note } from "../App";
-import * as Modal from "@radix-ui/react-dialog";
-import { Edit } from "./Edit";
 import { Select } from "../../shared/components/Select";
+import { Note } from "../App";
+import { Card } from "./Card";
+import { Edit } from "./Edit";
+import { Tag } from "./Form";
 
 interface HomeProps {
     avaliableTags: Tag[]
@@ -74,25 +73,13 @@ export const Home = ({ avaliableTags, allNotesTags, onDeleteTag, onUpdateTag }: 
                     </Modal.Root>
                 </nav>
             </header>
-            <form className="flex items-center justify-between flex-wrap gap-5">
+            <form onSubmit={(e) => e.preventDefault()} className="flex items-center justify-between flex-wrap gap-5">
                 <Input
                     label="Digite uma palavra"
                     value={inputValue}
                     handleOnChange={value => setInputvalue(value)}
                     explanation={false}
                 />
-                {/* <ReactSelect className="w-80 h-13"
-                    value={selectedTags.map(tag => {
-                        return { label: tag.label, value: tag.id };
-                    })}
-                    options={avaliableTags.map(tag => {
-                        return { label: tag.label, value: tag.id };
-                    })}
-                    onChange={(tags) => {
-                        setSelectedSTags(tags.map(tag => ({ label: tag!.label, id: tag!.value })));
-                    }}
-                    isMulti
-                /> */}
                 <Select
                     multiple
                     value={selectedTags.map(tag => {
