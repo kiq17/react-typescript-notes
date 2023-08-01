@@ -1,14 +1,12 @@
-import { Input } from "../../shared/components/Input";
-import CreatableReactSelect from "react-select/creatable";
-import { useState, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { NoteData } from "../App";
-import * as yup from "yup";
 import * as PopOver from "@radix-ui/react-popover";
+import { FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
 import { ValidationError } from "yup";
-import "../../shared/services/translateYup";
-import { useNote } from "./NoteList";
 import { CreateSelect } from "../../shared/components/CreateSelect";
+import { Input } from "../../shared/components/Input";
+import "../../shared/services/translateYup";
+import { NoteData } from "../App";
 
 export interface Tag {
     id: string;
