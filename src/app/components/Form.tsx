@@ -8,6 +8,7 @@ import * as PopOver from "@radix-ui/react-popover";
 import { ValidationError } from "yup";
 import "../../shared/services/translateYup";
 import { useNote } from "./NoteList";
+import { CreateSelect } from "../../shared/components/CreateSelect";
 
 export interface Tag {
     id: string;
@@ -84,24 +85,24 @@ export const Form = ({ onCreateNote, onAddTag, avaliableTags }: FormProps) => {
                         titleExplanation="Criação Note"
                         textExplanation="Para criar uma note o nome dever ter tamanho máximo de 100 carecteres. Certifique-se do que foi escrito antes de salvar."
                     />
-                    <CreatableReactSelect className="w-80 h-13"
+                    <CreateSelect
+                        multiple
                         onCreateOption={(label: string) => {
                             const newTag = { id: crypto.randomUUID(), label };
                             onAddTag(newTag);
                             setSelectedSTags(prev => [...prev, newTag]);
                         }}
-                        options={avaliableTags.map(tag => {
-                            return { label: tag.label, value: tag.id };
-                        })}
-                        isMulti
-                        value={selectedTags.map(tag => {
-                            return { label: tag.label, value: tag.id };
-                        })}
                         onChange={(tags) => {
                             setSelectedSTags(tags.map(tag => {
                                 return { label: tag.label, id: tag.value };
                             }));
                         }}
+                        options={avaliableTags.map(tag => {
+                            return { label: tag.label, value: tag.id };
+                        })}
+                        value={selectedTags.map(tag => {
+                            return { label: tag.label, value: tag.id };
+                        })}
                     />
                 </fieldset>
                 <fieldset className="w-full">
