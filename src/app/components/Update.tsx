@@ -1,14 +1,13 @@
-import { Input } from "../../shared/components/Input";
-import CreatableReactSelect from "react-select/creatable";
-import { useState, FormEvent } from "react";
+import * as PopOver from "@radix-ui/react-popover";
+import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { ValidationError } from "yup";
+import { CreateSelect } from "../../shared/components/CreateSelect";
+import { Input } from "../../shared/components/Input";
+import "../../shared/services/translateYup";
 import { NoteData } from "../App";
 import { useNote } from "./NoteList";
-import { tagSelect } from "./Home";
-import * as yup from "yup";
-import * as PopOver from "@radix-ui/react-popover";
-import { ValidationError } from "yup";
-import "../../shared/services/translateYup";
 
 export interface Tag {
     id: string;
@@ -56,7 +55,7 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        if(validateSchema()) return
+        if (validateSchema()) return
 
         onUpdateNote(currentNote.id, { markdown, note, tags: selectedTags });
         navigate("/");
@@ -79,7 +78,8 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
                         titleExplanation="Criação Note"
                         textExplanation="Para criar uma note o nome dever ter tamanho máximo de 100 carecteres. Certifique-se do que foi escrito antes de salvar."
                     />
-                    < CreatableReactSelect className="w-80 h-13"
+                    <CreateSelect
+                        multiple
                         onCreateOption={(label: string) => {
                             const newTag = { id: crypto.randomUUID(), label };
                             onAddTag(newTag);
@@ -88,7 +88,6 @@ export const Update = ({ onUpdateNote, onAddTag, avaliableTags }: FormProps) => 
                         options={avaliableTags.map(tag => {
                             return { label: tag.label, value: tag.id };
                         })}
-                        isMulti
                         value={selectedTags.map(tag => {
                             return { label: tag.label, value: tag.id };
                         })}
