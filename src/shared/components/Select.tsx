@@ -63,7 +63,6 @@ export const Select = ({ multiple, value, options, onChange }: selcetProps) => {
     }
 
     useEffect(() => {
-        inputRef.current?.focus();
         const handler = (e: Event) => {
             if (e.target != conteinerRef.current) return
             let k = (e as unknown as KeyboardEvent);
@@ -85,41 +84,46 @@ export const Select = ({ multiple, value, options, onChange }: selcetProps) => {
 
 
     return (
-        <div tabIndex={0} className="w-96 p-2 min-h-[3.5em] border-2 border-zinc-400 flex items-center gap-5 relative rounded-md cursor-text"
-            onClick={() => { setIsOpen(true); }}
+        <div tabIndex={0} className="w-96 p-2 min-h-[3.5em] border-2 border-zinc-400 flex items-center gap-5 relative rounded-md cursor-text justify-between"
+            onClick={() => { setIsOpen(true); inputRef.current?.focus(); }}
             ref={conteinerRef}>
-            <span className="flex-grow flex gap-3 flex-wrap">{
-                multiple ? (
+            <div className="flex gap-2 flex-wrap">
+                {multiple ? (
                     value.map(item => (
-                        <button key={item.value} onClick={e => {
-                            e.stopPropagation();
-                            selected(item)
-                        }} className="flex gap-3 cursor-pointer border-2 border-zinc-400 items-center p-1 rounded-md group">
-                            {item.label}
-                            <i className="fa-solid fa-xmark group-hover:text-red-500"></i>
-                        </button>
+                        <span className=" flex gap-3">
+                            <button key={item.value} onClick={e => {
+                                e.stopPropagation();
+                                selected(item)
+                            }} className="flex gap-3 cursor-pointer border-2 border-zinc-400 items-center p-1 rounded-md group">
+                                {item.label}
+                                <i className="fa-solid fa-xmark group-hover:text-red-500"></i>
+                            </button>
+                        </span>
                     ))
                 ) : (value?.label)}
-            </span>
-            <i className="fa-solid fa-xmark cursor-pointer hover:text-zinc-400 transition-colors duration-300" role={"button"} onClick={clearOptions}></i>
-            <div className="w-[2px] bg-zinc-400 self-stretch"></div>
-            <i onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen) }} role={"button"} className={`fa-solid fa-caret-down cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}></i>
-            <ul style={{ top: "calc(100% + .30em)" }} className={`absolute border-2 border-zinc-400 rounded-md w-full left-0 shadow-2xl max-h-[15em] overflow-y-auto bg-white ${isOpen ? "visible" : "hidden"}`} tabIndex={0}
-            >
                 <input ref={inputRef}
-                    className="w-full p-2 outline-none" type="text"
+                    className="w-20 outline-none" type="text"
                     value={inputValue}
                     onChange={(e) => setInptValue(e.target.value)}
-                    placeholder="Procurar item"
                 />
+            </div>
+            <div className="flex gap-5 items-center self-stretch">
+                <i className="fa-solid fa-xmark cursor-pointer hover:text-zinc-400 transition-colors duration-300" role={"button"} onClick={clearOptions}></i>
+                <div className="w-[2px] bg-zinc-400 self-stretch"></div>
+                <i onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen) }} role={"button"} className={`fa-solid fa-caret-down cursor-pointer transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}></i>
+            </div>
+            <ul style={{ top: "calc(100% + .30em)" }} className={`absolute border-2 border-zinc-400 rounded-md w-full left-0 shadow-2xl max-h-[15em] overflow-y-auto bg-white ${isOpen ? "visible" : "hidden"}`}
+                onMouseLeave={() => { setIsOpen(false); inputRef.current?.blur(); }}
+            >
                 {filteredOptions.length > 0 ? (
                     filteredOptions.map((option, index) => {
                         return (
                             <li className={`hover:bg-zinc-200 p-2 cursor-pointer ${highLights.includes(index) ? "bg-zinc-200" : ""}`} key={option.value}
                                 onClick={e => {
-                                    e.stopPropagation()
-                                    selected(option, index)
-                                    setIsOpen(false)
+                                    e.stopPropagation();
+                                    selected(option, index);
+                                    setIsOpen(false);
+                                    setInptValue("");
                                 }}
                             >
                                 {option.label}
@@ -127,7 +131,7 @@ export const Select = ({ multiple, value, options, onChange }: selcetProps) => {
                         )
                     }
                     )) :
-                    (<p className="p-2">{options.length > 0 ? inputValue + "não encontrado." : "Nenhuma tag foi adicionada."}</p>)
+                    (<p className="p-2">{options.length > 0 ? '"' + inputValue + '" ' + "não encontrado." : "Nenhuma tag foi adicionada."}</p>)
                 }
             </ul>
         </div >
